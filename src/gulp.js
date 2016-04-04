@@ -1,30 +1,40 @@
 'use strict';
 
-var rigsFolder = './..';
-
-var requireFile = function( path ) {
-    try {
-        return require( path );
-    } catch ( e ) {
-        console.log( e );
-        return false;
+var getTask = function ( name ) {
+    var tasks = {};
+    for ( var i = 0; i < rigs.length; i++ ) {
+        tasks = rigs[ i ].tasks;
+        for ( var taskname in tasks ) {
+            if ( tasks.hasOwnProperty( taskname ) ) {
+                if ( rigs[ i ].name + '__' + taskname === name ) {
+                    return tasks[ taskname ];
+                }
+            }
+        }
     }
+    return false;
 };
 
-var loadConfiguration = function( path ) {
-    var config = requireFile( path + '/tasks.js' );
-
-    for ( var configName in config ) {
-        if ( config.hasOwnProperty( configName ) ) {
-            if ( config[ configName ].taskname ) {
-                config[ configName ].dependencies = config[ configName ].dependencies || [];
-                requireFile( path + '/tasks/' + config[ configName ].taskname )( configName, config[ configName ] );
+var loadConfiguration = function ( config ) {
+    for ( var command in config ) {
+        if ( config.hasOwnProperty( command ) ) {
+            if ( config[ command ].taskname ) {
+                config[ command ].dependencies = config[ command ].dependencies || [];
+                require( getTask( config[ command ].taskname ) )( command, config[ command ] );
             } else {
-                console.log( 'No taskname specified for configuration ', configName, ' with config ', config[ configName ] );
+                console.log( 'No taskname specified for configuration ', command, ' with config ', config[ command ] );
             }
         }
     }
 };
 
-// Load configuration
-loadConfiguration( rigsFolder );
+var rigs = [];
+
+module.exports = {
+    addRig: function ( rig ) {
+        rigs.push( rig );
+    },
+    init: function ( config ) {
+        loadConfiguration( config );
+    }
+};

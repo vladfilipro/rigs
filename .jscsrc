@@ -75,13 +75,7 @@
 
     "disallowKeywords": [ "with" ],
     "disallowKeywordsOnNewLine": [ "else" ],
-    "disallowSpacesInFunctionExpression": {
-        "beforeOpeningRoundBrace": true
-    },
     "disallowSpacesInNamedFunctionExpression": {
-        "beforeOpeningRoundBrace": true
-    },
-    "disallowSpacesInAnonymousFunctionExpression": {
         "beforeOpeningRoundBrace": true
     },
     "disallowSpacesInCallExpression": true,
