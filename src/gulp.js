@@ -36,5 +36,8 @@ module.exports = {
     },
     init: function ( config ) {
         loadConfiguration( config );
+    },
+    install: function () {
+
     }
 };
