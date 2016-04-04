@@ -14,7 +14,11 @@
     "bugs": {
         "url": "https://github.com/vladfilipro/rigs/issues"
     },
-    "dependencies": {},
+    "dependencies": {
+        "gulp": "~3.9.1",
+        "browser-sync": "~2.11.2",
+        "gulp-clean-css": "~2.0.4"
+    },
     "devDependencies": {},
     "bin": {
         "install": "install.js"

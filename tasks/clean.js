@@ -3,7 +3,7 @@
  * of a given folder from the file system.
  *
  * uses the following parameters:
- *     config.path
+ *     config.path {String}
  */
 
 'use strict';

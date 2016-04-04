@@ -3,8 +3,7 @@
  * which requires a task in order to be fully functional
  *
  * uses the following parameters:
- *     config.src {Array}
- *     config.tasks {Array}
+ *     config.watchers {Array}
  */
 
 'use strict';

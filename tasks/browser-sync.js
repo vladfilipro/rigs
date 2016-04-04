@@ -3,9 +3,7 @@
  * port and starts serving files from a specified folder.
  *
  * uses the following parameters:
- *     config.root
- *     config.port
- *     config.defaultIndex
+ *     config.options {Object}
  */
 
 'use strict';

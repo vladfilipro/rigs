@@ -1,14 +1,10 @@
 'use strict';
 
-var gulpFolder = '.';
+var rigsFolder = './..';
 
-var getFile = function( path, required ) {
+var requireFile = function( path ) {
     try {
-        if ( required ) {
-            return require( path );
-        } else {
-            return path;
-        }
+        return require( path );
     } catch ( e ) {
         console.log( e );
         return false;
@@ -16,24 +12,19 @@ var getFile = function( path, required ) {
 };
 
 var loadConfiguration = function( path ) {
-    var config = getFile( path + '/tasks.js', true );
-    var file;
+    var config = requireFile( path + '/tasks.js' );
+
     for ( var configName in config ) {
         if ( config.hasOwnProperty( configName ) ) {
-            file = getFile( path + '/tasks/' + config[ configName ].taskname );
-            if ( file ) {
+            if ( config[ configName ].taskname ) {
                 config[ configName ].dependencies = config[ configName ].dependencies || [];
-                require( file )( configName, config[ configName ] );
+                requireFile( path + '/tasks/' + config[ configName ].taskname )( configName, config[ configName ] );
+            } else {
+                console.log( 'No taskname specified for configuration ', configName, ' with config ', config[ configName ] );
             }
         }
     }
 };
 
 // Load configuration
-loadConfiguration( gulpFolder );
-
-// Load commandTask
-var defaultCommands = getFile( gulpFolder + '/commands.js', true );
-if ( defaultCommands ) {
-    defaultCommands();
-}
+loadConfiguration( rigsFolder );
