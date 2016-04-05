@@ -1,9 +1,12 @@
 {
     "name": "rigs",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "author": "Vlad Filip ( vlad.filip.dev@gmail.com )",
     "description": "Adds a set of already defined tools for building or running your project",
     "keywords": [
+        "rig",
+        "rigs",
+        "tools",
         "env",
         "environment",
         "gulpfriendly"
