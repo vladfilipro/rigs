@@ -1,5 +1,8 @@
 'use strict';
 
+var _path = require( 'path' );
+var _fs = require( 'fs' );
+
 var rigs = [];
 
 var getTask = function( name ) {
@@ -15,6 +18,24 @@ var getTask = function( name ) {
         }
     }
     return false;
+};
+
+var getLocalTasks = function( dir ) {
+    var taskDir = _path.resolve( dir );
+    var tasks = {};
+    if ( _fs.lstatSync( taskDir ).isDirectory() ) {
+        var content;
+        _fs.readdirSync( taskDir ).forEach( function( file ) {
+            try {
+                content = require( taskDir + '/' + file );
+            } catch ( e ) {
+                console.error( 'Cannot load file ', taskDir + '/' + file );
+                content = false;
+            }
+            tasks[ file.replace( /\.js$/gi, '' ) ] = content;
+        } );
+    }
+    return tasks;
 };
 
 var loadConfiguration = function( config ) {
@@ -33,6 +54,12 @@ var loadConfiguration = function( config ) {
         }
     }
 };
+
+// Add local tasks to rigs
+rigs.push( {
+    tasks: getLocalTasks( __dirname + '/../tasks' ),
+    name: 'core'
+} );
 
 module.exports = {
     addRig: function( rig ) {
