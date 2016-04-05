@@ -23,7 +23,7 @@
     },
     "devDependencies": {},
     "bin": {
-        "install": "install.js"
+        "rigs": "install.js"
     },
     "main": "./src/gulp.js"
 }

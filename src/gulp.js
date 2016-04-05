@@ -1,6 +1,8 @@
 'use strict';
 
-var getTask = function ( name ) {
+var rigs = [];
+
+var getTask = function( name ) {
     var tasks = {};
     for ( var i = 0; i < rigs.length; i++ ) {
         tasks = rigs[ i ].tasks;
@@ -15,12 +17,16 @@ var getTask = function ( name ) {
     return false;
 };
 
-var loadConfiguration = function ( config ) {
+var loadConfiguration = function( config ) {
+    var task = false;
     for ( var command in config ) {
         if ( config.hasOwnProperty( command ) ) {
             if ( config[ command ].taskname ) {
                 config[ command ].dependencies = config[ command ].dependencies || [];
-                require( getTask( config[ command ].taskname ) )( command, config[ command ] );
+                task = getTask( config[ command ].taskname );
+                if ( typeof task === 'function' ) {
+                    task.call( this, command, config[ command ] );
+                }
             } else {
                 console.log( 'No taskname specified for configuration ', command, ' with config ', config[ command ] );
             }
@@ -28,16 +34,11 @@ var loadConfiguration = function ( config ) {
     }
 };
 
-var rigs = [];
-
 module.exports = {
-    addRig: function ( rig ) {
+    addRig: function( rig ) {
         rigs.push( rig );
     },
-    init: function ( config ) {
+    init: function( config ) {
         loadConfiguration( config );
-    },
-    install: function () {
-
     }
 };
