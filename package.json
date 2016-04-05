@@ -1,8 +1,14 @@
 {
     "name": "rigs",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "author": "Vlad Filip ( vlad.filip.dev@gmail.com )",
     "description": "Adds a set of already defined tools for building or running your project",
+    "keywords": [
+        "env",
+        "environment",
+        "gulpfriendly"
+    ],
+    "license": "MIT",
     "engines": {
         "node": ">=5.8.0",
         "npm": ">=3.7.3"
