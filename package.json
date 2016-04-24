@@ -1,6 +1,6 @@
 {
     "name": "rigs",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "author": "Vlad Filip ( vlad.filip.dev@gmail.com )",
     "description": "Adds a set of already defined tools for building or running your project",
     "keywords": [
@@ -27,7 +27,7 @@
         "copy-dir": "^0.0.8",
 
         "gulp": "~3.9.1",
-        "browser-sync": "~2.11.2",
+        "browser-sync": "~2.12.3",
         "gulp-clean-css": "~2.0.4"
     },
     "devDependencies": {},

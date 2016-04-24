@@ -1,4 +1,5 @@
 # RIGS
+[![Dependency Status](https://david-dm.org/vladfilipro/rigs.svg)](https://david-dm.org/vladfilipro/rigs)
 - Adds a set of already defined tools for building or running your project
 - It uses gulp to run it's tasks
 - RIGS uses plugins to add to it's collection, custom build tasks.
